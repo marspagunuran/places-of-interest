@@ -1,0 +1,29 @@
+version: "2.2"
+networks:
+  platform-service:
+    driver: bridge
+services:
+  postgres:
+    image: postgres:latest
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgresql
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: platform
+    volumes:
+      - ./postgres_db_data:/var/lib/postgresql/data:z
+      - ./scripts/init-db.sh:/docker-entrypoint-initdb.d
+    networks:
+      - platform-service
+
+  dbadmin:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    links:
+      - postgres
+    networks:
+      - platform-service
+

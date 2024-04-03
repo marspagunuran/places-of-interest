@@ -1,0 +1,15 @@
+---
+version: 1
+
+merge:
+
+  blacklist:
+    labels: [do not merge, wip]
+
+  method: squash
+
+  options:
+    squash:
+      body: summarize_commits
+  delete_after_merge: true
+

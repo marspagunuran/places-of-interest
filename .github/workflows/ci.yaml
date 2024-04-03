@@ -1,0 +1,31 @@
+---
+
+name: Unit Test
+
+on:
+  workflow_dispatch:
+  pull_request:
+    types: [opened, synchronize, reopened]
+  push:
+    branches:
+      - develop
+
+jobs:
+  run-ci:
+    name: Java CI
+
+    # https://docs.github.com/en/actions/security-guides/automatic-token-authentication
+    permissions:
+      checks: 'write'
+      contents: 'read'
+      issues: 'read'
+      pull-requests: 'write'
+
+    uses: Console-Core/syseng-github-actions-workflows/.github/workflows/console-core-java-unit-tests-jdk17.yaml@main
+    secrets: inherit
+
+  # container-build:
+  #   # Only run this on PRs or Workflow Dispatch
+  #   if: github.event_name != 'push'
+  #   uses: Console-Core/syseng-github-actions-workflows/.github/workflows/container-build-test.yaml@main
+  #   secrets: inherit

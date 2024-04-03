@@ -1,0 +1,92 @@
+spring:
+  application:
+    name: "@project.artifactId@"
+    description: "@project.name@"
+  build:
+    version: "@project.version@"
+  datasource:
+    driverClassName: org.postgresql.Driver
+    password: password
+    url: jdbc:postgresql://localhost:5432/platform-test
+    username: postgresql
+    hikari:
+      pool-name: hikari-platform-service-platform
+      connection-test-query: SELECT 1
+      maximum-pool-size: 10
+      max-lifetime: 600000
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: false
+    database: POSTGRESQL
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        jdbc:
+          time_zone: UTC
+  flyway:
+    # clean-on-validation-error: true
+    baseline-on-migrate: true
+    ignore-missing-migrations: true
+    enabled: false
+  jackson:
+    default-property-inclusion: NON_NULL
+    deserialization:
+      fail-on-unknown-properties: false
+server:
+  port: ${port:8000}
+  rest:
+    base: null
+management:
+  endpoints:
+    jmx:
+      exposure:
+        include: health,info,prometheus,httptrace
+    web:
+      base-path: /admin
+      exposure:
+        include: health,info,prometheus,httptrace
+  trace:
+    http:
+      include: REQUEST_HEADERS, RESPONSE_HEADERS, REMOTE_ADDRESS, TIME_TAKEN, AUTHORIZATION_HEADER
+  info:
+    git:
+      mode: full
+info:
+  app:
+    encoding: "@project.build.sourceEncoding@"
+    java:
+      source: "@java.version@"
+      target: "@java.version@"
+
+springdoc:
+  api-docs:
+    enabled: true
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+  servers:
+    - url: http://localhost:8000
+      description: localhost
+
+app:
+  auth:
+    rbac:
+      enabled: true
+      jwt:
+        secret: 123456
+  core:
+    plugin:
+      enabled: false
+    backend:
+      url: dev.core.consoleconnect.com
+      token: ${CONSOLE_CORE_AGENT_TOKEN}
+      env: LOCAL 
+  product:
+    controller:
+      enabled: true
+      async:
+        enabled: false
+logging:
+  level:
+    com.pccw.platform.service: DEBUG

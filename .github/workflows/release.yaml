@@ -1,0 +1,22 @@
+---
+
+name: Bump Version
+
+on:
+  pull_request:
+    branches:
+      - develop
+    types: [closed]
+
+jobs:
+  do-release:
+
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+      pull-requests: 'write'
+
+    name: Github Release
+    if: github.event.pull_request.merged == true
+    uses: Console-Core/syseng-github-actions-workflows/.github/workflows/console-core-java-release.yaml@main
+    secrets: inherit

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<parent>
+		<groupId>com.pccw.platform.service</groupId>
+		<artifactId>cc-parent</artifactId>
+		<version>2.43.0</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>PROJECT_NAME</artifactId>
+	<name>console-core-service-PROJECT_NAME</name>
+	<version>0.0.0</version>
+	<packaging>jar</packaging>
+
+	<properties>
+		<platform.service.repo>console-core-service-PROJECT_NAME</platform.service.repo>
+		<platform.service.name>PROJECT_NAME</platform.service.name>
+		<platform.service.parent.version>2.43.0</platform.service.parent.version>
+	</properties>
+	<dependencies>
+		<!-- Spring Boot Starter helper -->
+		<dependency>
+			<groupId>com.pccw.platform.service</groupId>
+			<artifactId>cc-spring-boot-starter</artifactId>
+			<version>${platform.service.parent.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>shiro-core</artifactId>
+					<groupId>org.apache.shiro</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>snakeyaml</artifactId>
+					<groupId>org.yaml</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>jackson-databind</artifactId>
+					<groupId>com.fasterxml.jackson.core</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<artifactId>shiro-core</artifactId>
+			<groupId>org.apache.shiro</groupId>
+			<version>1.12.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-web</artifactId>
+			<version>1.12.0</version>
+		</dependency>
+
+		<dependency>
+			<artifactId>snakeyaml</artifactId>
+			<groupId>org.yaml</groupId>
+			<version>1.31</version>
+		</dependency>
+
+		<dependency>
+			<artifactId>jackson-databind</artifactId>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<version>2.13.4.2</version>
+		</dependency>
+		<!-- DB configuration -->
+		<dependency>
+			<groupId>com.pccw.platform.service</groupId>
+			<artifactId>cc-persist</artifactId>
+			<version>${platform.service.parent.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok-mapstruct-binding</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>junit</groupId>
+					<artifactId>junit</artifactId>
+				</exclusion>
+				<exclusion>
+					<artifactId>snakeyaml</artifactId>
+					<groupId>org.yaml</groupId>
+				</exclusion>
+			</exclusions>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.platform</groupId>
+			<artifactId>junit-platform-runner</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.restdocs</groupId>
+			<artifactId>spring-restdocs-mockmvc</artifactId>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<artifactId>jackson-databind</artifactId>
+					<groupId>com.fasterxml.jackson.core</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+	</dependencies>
+
+	<repositories>
+		<repository>
+			<id>github</id>
+			<name>github-parent</name>
+			<url>https://maven.pkg.github.com/Console-Core/console-core-service-parent</url>
+		</repository>
+	</repositories>
+
+
+</project>

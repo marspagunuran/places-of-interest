@@ -1,0 +1,24 @@
+---
+
+name: Deploy to Dev
+
+concurrency: dev
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build-deploy-dev:
+    name: Build and Deploy
+
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+
+    uses: Console-Core/syseng-github-actions-workflows/.github/workflows/console-core-java-build-deploy-dev-jdk17.yaml@main
+    secrets: inherit
+    with:
+      # Replace SERVICE_SHORT_NAME to your real service short name
+      service-short-name: SERVICE_SHORT_NAME
+      deployment-config-repo: Console-Core/console-core-deployment-config
